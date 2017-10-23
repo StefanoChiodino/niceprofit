@@ -1,0 +1,11 @@
+name: Nicehash multicpu-miner optimiser
+version: "1.0"
+author: Stefano Chiodino <louderth@gmail.com>
+about: Optimise your cpu with the most profitable hasing algorithm on nicehash!
+args:
+    - wallet:
+        short: c
+        long: wallet
+        value_name: wallet_address
+        help: Set the user wallet address
+        takes_value: true
