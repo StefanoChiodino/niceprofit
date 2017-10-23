@@ -2,10 +2,13 @@
 extern crate clap;
 use clap::App;
 
+#[macro_use]
+extern crate lazy_static;
+
 use std::process::Command;
 
-
 mod runner;
+mod parser;
 
 const user_wallet_arg: &str = "wallet";
 const dev_wallet: &str = "393EZrk5mwZ6gdVYmX5nguesVVJwxD9X2U";
