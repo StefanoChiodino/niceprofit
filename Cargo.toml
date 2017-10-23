@@ -1,0 +1,6 @@
+[package]
+name = "nicehash-cpumulti-miner-optimiser"
+version = "0.1.0"
+authors = ["Stefano Chiodino <louderth@gmail.com>"]
+
+[dependencies]
