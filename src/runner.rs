@@ -30,5 +30,6 @@ fn can_run_ping() {
     let run = run(command, 1000);
 
     assert!(run.is_ok());
-    assert_eq!(run.unwrap().lines().next(), Some("PING 8.8.8.8 (8.8.8.8): 56 data bytes"));
+    assert_eq!(run.unwrap().lines().next(),
+               Some("PING 8.8.8.8 (8.8.8.8): 56 data bytes"));
 }

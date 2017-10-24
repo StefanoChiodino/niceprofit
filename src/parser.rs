@@ -3,7 +3,7 @@ use self::regex::Regex;
 use std::collections::HashMap;
 
 pub struct Interpretation {
-    cpu_count: u32,
+    cpu_hashrates: HashMap<u32, Vec<f64>>,
 }
 
 pub fn parse(output: String) -> Interpretation {
@@ -12,19 +12,22 @@ pub fn parse(output: String) -> Interpretation {
         static ref regex: Regex = Regex::new(r"CPU #(\d): (\d.?\d+) (.*H)/s").unwrap();
     }
 
-    let mut cpu_stats: HashMap<String, Vec<String>> = HashMap::new();
+    let mut cpu_hashrates: HashMap<u32, Vec<f64>> = HashMap::new();
 
     for capture in regex.captures_iter(&output) {
-        let core_number = capture[1].to_string();
-        let hashrate = capture[2].to_string();
-        if cpu_stats.contains_key(&core_number) {
-            cpu_stats.get_mut(&core_number).unwrap().push(hashrate);
+        let core_number = capture[1].parse().unwrap();
+        let hashrate = capture[2].parse().unwrap();
+        if cpu_hashrates.contains_key(&core_number) {
+            cpu_hashrates
+                .get_mut(&core_number)
+                .unwrap()
+                .push(hashrate);
         } else {
-            cpu_stats.insert(core_number, vec![hashrate]);
+            cpu_hashrates.insert(core_number, vec![hashrate]);
         }
     }
 
-    let interpretation = Interpretation { cpu_count: cpu_stats.len() as u32 };
+    let interpretation = Interpretation { cpu_hashrates: cpu_hashrates };
 
     interpretation
 }
@@ -44,5 +47,7 @@ CPU #1: 1.80 H/s"
 
     let interpretation = parse(output);
 
-    assert_eq!(interpretation.cpu_count, 4);
+    assert_eq!(interpretation.cpu_hashrates.len(), 4);
+    assert_eq!(interpretation.cpu_hashrates[&(0 as u32)].len(), 1);
+    assert_eq!(interpretation.cpu_hashrates[&(1 as u32)].len(), 2);
 }
