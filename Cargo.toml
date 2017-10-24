@@ -7,3 +7,4 @@ authors = ["Stefano Chiodino <louderth@gmail.com>"]
 clap = {version = "2.26.2", features = ["yaml"]}
 regex = "0.2"
 lazy_static = "0.2.9"
+reqwest = "0.8.0"
