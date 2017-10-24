@@ -5,12 +5,11 @@ use std::collections::HashMap;
 pub fn parse(output: String) -> HashMap<u32, Vec<f64>> {
 
     lazy_static! {
-        static ref regex: Regex = Regex::new(r"CPU #(\d): (\d.?\d+) (.*H)/s").unwrap();
+        static ref REGEX: Regex = Regex::new(r"CPU #(\d): (\d.?\d+) (.*H)/s").unwrap();
     }
 
     let mut cpu_hashrates: HashMap<u32, Vec<f64>> = HashMap::new();
-
-    for capture in regex.captures_iter(&output) {
+    for capture in REGEX.captures_iter(&output) {
         let core_number = capture[1].parse().unwrap();
         let hashrate = capture[2].parse().unwrap();
         if cpu_hashrates.contains_key(&core_number) {
