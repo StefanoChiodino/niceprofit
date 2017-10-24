@@ -16,7 +16,7 @@ pub fn benchmark(algorithms: Vec<String>,
         .map(|a| {
             let mut cpuminer_multi_command = Command::new(&cpuminer_multi_path);
             cpuminer_multi_command
-                .arg("-a cryptonight".to_string())
+                .arg(format!("-a {}", a))
                 .arg(format!("-o stratum+tcp://{}.{}.nicehash.com:3355", a, location))
                 .arg(format!("-u {}.nicehash-cpumulti-miner-optimiser", wallet))
                 .arg("-p x".to_string());
