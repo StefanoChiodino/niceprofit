@@ -14,12 +14,6 @@ pub fn parse(output: String) -> Interpretation {
 
     let mut cpu_stats: HashMap<String, Vec<String>> = HashMap::new();
 
-    /* regex.captures_iter(&output)
-        .into_iter()
-        .group_by(|line| line[0]) */
-
-
-
     for capture in regex.captures_iter(&output) {
         let core_number = capture[1].to_string();
         let hashrate = capture[2].to_string();
