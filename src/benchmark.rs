@@ -6,10 +6,10 @@ use runner;
 use std::process::Command;
 
 pub fn benchmark(algorithms: Vec<&str>,
-                 location: String,
+                 location: &str,
                  benchmark_time_ms: u64,
-                 cpuminer_multi_path: String,
-                 wallet: String)
+                 cpuminer_multi_path: &str,
+                 wallet: &str)
                  -> HashMap<&str, Option<f64>> {
     let benchmarks: HashMap<&str, Option<f64>> = algorithms
         .iter()

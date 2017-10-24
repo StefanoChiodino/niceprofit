@@ -8,8 +8,6 @@ extern crate lazy_static;
 #[macro_use]
 extern crate serde_derive;
 
-use std::process::Command;
-
 mod runner;
 mod parser;
 mod performance_calculator;
@@ -29,21 +27,9 @@ fn main() {
 
     let user_wallet = matches.value_of(&USER_WALLET_ARG).unwrap_or(&DEV_WALLET);
 
-    let mut cpuminer_multi_command = Command::new(CPUMINER_MULTI_PATH);
-    cpuminer_multi_command
-        .arg("-a cryptonight".to_string())
-        .arg("-o stratum+tcp://cryptonight.eu.nicehash.com:3355".to_string())
-        .arg(format!("-u {}.nicehash-cpumulti-miner-optimiser", user_wallet))
-        .arg("-p x".to_string());
+    let query_nicehash = query_nicehash::get_nicehash_response().unwrap();
 
-    let output = runner::run(cpuminer_multi_command, BENCHMARK_TIME_MS);
-}
+    let benchmark = benchmark::benchmark(query_nicehash, LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
 
-fn mine_most_profitable() {
-    let mut cpuminer_multi_command = Command::new(CPUMINER_MULTI_PATH);
-    cpuminer_multi_command
-        .arg("-a cryptonight".to_string())
-        .arg("-o stratum+tcp://cryptonight.eu.nicehash.com:3355".to_string())
-        .arg(format!("-u {}.nicehash-cpumulti-miner-optimiser", &DEV_WALLET))
-        .arg("-p x".to_string());
+    format!("{:?}", benchmark)
 }
