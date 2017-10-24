@@ -5,13 +5,13 @@ use runner;
 
 use std::process::Command;
 
-pub fn benchmark(algorithms: Vec<&str>,
+pub fn benchmark(algorithms: Vec<String>,
                  location: &str,
                  benchmark_time_ms: u64,
                  cpuminer_multi_path: &str,
                  wallet: &str)
-                 -> HashMap<&str, Option<f64>> {
-    let benchmarks: HashMap<&str, Option<f64>> = algorithms
+                 -> HashMap<String, Option<f64>> {
+    let benchmarks: HashMap<String, Option<f64>> = algorithms
         .iter()
         .map(|a| {
             let mut cpuminer_multi_command = Command::new(&cpuminer_multi_path);
@@ -27,10 +27,10 @@ pub fn benchmark(algorithms: Vec<&str>,
                 Ok(o) => {
                     let parsed_output = parser::parse(o);
                     let hashrate = performance_calculator::calculate_hashrate(parsed_output);
-                    (*a, Some(hashrate))
+                    (a.clone(), Some(hashrate))
                 }
                 // TODO: don't hide errors.
-                Err(_) => (*a, None),
+                Err(_) => (a.clone(), None),
             }
         })
         .collect();

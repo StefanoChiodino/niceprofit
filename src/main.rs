@@ -27,9 +27,14 @@ fn main() {
 
     let user_wallet = matches.value_of(&USER_WALLET_ARG).unwrap_or(&DEV_WALLET);
 
-    let query_nicehash = query_nicehash::get_nicehash_response().unwrap();
+    let nicehash_response = profitability::get_profitability().unwrap();
+    let algorithms : Vec<String> = nicehash_response.result.simplemultialgo
+        .iter()
+        .map(|a| a.name.clone())
+        .collect();
 
-    let benchmark = benchmark::benchmark(query_nicehash, LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
 
-    format!("{:?}", benchmark)
+    let benchmark = benchmark::benchmark(algorithms, LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
+
+    format!("{:?}", benchmark);
 }

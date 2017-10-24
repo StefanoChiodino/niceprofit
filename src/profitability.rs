@@ -18,12 +18,12 @@ pub enum ProfitabilityError {
 
 #[derive(Serialize, Deserialize)]
 pub struct SimplemultialgoInfo {
-    result: NicehashResult,
+    pub result: NicehashResult,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct NicehashResult {
-    simplemultialgo: Vec<Simplealgo>,
+    pub simplemultialgo: Vec<Simplealgo>,
     method: String,
 }
 
@@ -32,7 +32,7 @@ pub struct Simplealgo {
     #[serde(deserialize_with = "from_str")]
     paying: f64,
     port: u32,
-    name: String,
+    pub name: String,
     algo: u32,
 }
 
