@@ -19,12 +19,12 @@ pub enum ProfitabilityError {
 #[derive(Serialize, Deserialize)]
 pub struct SimplemultialgoInfo {
     pub result: NicehashResult,
+    method: String,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct NicehashResult {
     pub simplemultialgo: Vec<Simplealgo>,
-    method: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -101,9 +101,8 @@ fn can_deserialise_nicehash_response() {
 
     match result {
         Ok(r) => {
-            assert!(true);
-            assert_eq!(r.result.method, "simplemultialgo.info");
+            assert_eq!(r.method, "simplemultialgo.info");
         }
-        Err(e) => assert_ne!(format!("{:?}", e), ""),
+        Err(e) => panic!(format!("{:?}", e)),
     }
 }
