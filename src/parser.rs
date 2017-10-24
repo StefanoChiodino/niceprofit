@@ -2,11 +2,7 @@ extern crate regex;
 use self::regex::Regex;
 use std::collections::HashMap;
 
-pub struct Interpretation {
-    cpu_hashrates: HashMap<u32, Vec<f64>>,
-}
-
-pub fn parse(output: String) -> Interpretation {
+pub fn parse(output: String) -> HashMap<u32, Vec<f64>> {
 
     lazy_static! {
         static ref regex: Regex = Regex::new(r"CPU #(\d): (\d.?\d+) (.*H)/s").unwrap();
@@ -27,9 +23,7 @@ pub fn parse(output: String) -> Interpretation {
         }
     }
 
-    let interpretation = Interpretation { cpu_hashrates: cpu_hashrates };
-
-    interpretation
+    cpu_hashrates
 }
 
 #[test]
@@ -47,7 +41,8 @@ CPU #1: 1.80 H/s"
 
     let interpretation = parse(output);
 
-    assert_eq!(interpretation.cpu_hashrates.len(), 4);
-    assert_eq!(interpretation.cpu_hashrates[&(0 as u32)].len(), 1);
-    assert_eq!(interpretation.cpu_hashrates[&(1 as u32)].len(), 2);
+    assert_eq!(interpretation.len(), 4);
+    assert_eq!(interpretation[&(0 as u32)].len(), 1);
+    assert_eq!(interpretation[&(1 as u32)].len(), 2);
+    assert_eq!(interpretation[&(0 as u32)][0], 2.07);
 }
