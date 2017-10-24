@@ -17,7 +17,7 @@ mod benchmark;
 
 const USER_WALLET_ARG: &str = "wallet";
 const DEV_WALLET: &str = "393EZrk5mwZ6gdVYmX5nguesVVJwxD9X2U";
-const CPUMINER_MULTI_PATH: &str = "cpumulti-miner";
+const CPUMINER_MULTI_PATH: &str = "cpuminer";
 const BENCHMARK_TIME_MS: u64 = 10000;
 const LOCATION: &str = "eu";
 
@@ -36,5 +36,5 @@ fn main() {
 
     let benchmark = benchmark::benchmark(algorithms, LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
 
-    format!("{:?}", benchmark);
+    print!("{:?}", benchmark);
 }
