@@ -5,12 +5,16 @@ use clap::App;
 #[macro_use]
 extern crate lazy_static;
 
+#[macro_use]
+extern crate serde_derive;
+
 use std::process::Command;
 
 mod runner;
 mod parser;
 mod performance_calculator;
 mod query_nicehash;
+mod profitability;
 
 const USER_WALLET_ARG: &str = "wallet";
 const DEV_WALLET: &str = "393EZrk5mwZ6gdVYmX5nguesVVJwxD9X2U";

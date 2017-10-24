@@ -1,6 +1,6 @@
 extern crate reqwest;
 
-fn get_nicehash_response() -> Result<String, self::reqwest::Error>{
+pub fn get_nicehash_response() -> Result<String, self::reqwest::Error> {
     use std::io::Read;
     const API_URL: &str = "https://api.nicehash.com/api?method=simplemultialgo.info";
 
@@ -14,7 +14,7 @@ fn get_nicehash_response() -> Result<String, self::reqwest::Error>{
 }
 
 #[test]
-fn can_get_nicehash_response(){
+fn can_get_nicehash_response() {
     let response = get_nicehash_response();
 
     assert!(response.is_ok());
