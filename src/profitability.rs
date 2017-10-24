@@ -27,13 +27,13 @@ pub struct NicehashResult {
     pub simplemultialgo: Vec<Simplealgo>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Simplealgo {
     #[serde(deserialize_with = "from_str")]
-    paying: f64,
-    port: u32,
+    pub paying: f64,
+    pub port: u32,
     pub name: String,
-    algo: u32,
+    pub algo: u32,
 }
 
 pub fn get_profitability() -> Result<SimplemultialgoInfo, ProfitabilityError> {
