@@ -17,6 +17,7 @@ mod nicehash_api_raw;
 mod nicehash_api;
 mod benchmark;
 mod nicehash_cpuminer_mapper;
+mod algorithm_picker;
 
 const USER_WALLET_ARG: &str = "wallet";
 const DEV_WALLET: &str = "393EZrk5mwZ6gdVYmX5nguesVVJwxD9X2U";
@@ -33,8 +34,11 @@ fn main() {
     let nicehash_response = nicehash_api::get_profitability().unwrap();
     let algorithms= nicehash_response.result.simplemultialgo;
 
-
-    let benchmark = benchmark::benchmark(algorithms, LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
+    let benchmark = benchmark::benchmark(algorithms.clone(), LOCATION, BENCHMARK_TIME_MS, CPUMINER_MULTI_PATH, DEV_WALLET);
 
     println!("{:#?}", benchmark);
+
+    let best_algorithm = algorithm_picker::pick_cpuminer_algorithm(algorithms, benchmark.clone());
+
+    println!("{:#?}", best_algorithm);
 }
