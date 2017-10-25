@@ -5,17 +5,17 @@
             "type": "lldb",
             "request": "launch",
             "name": "Launch",
-            "program": "${workspaceRoot}/target/debug/deps/nicehash_cpumulti_miner_optimiser-2e9e4157d5f30697",
+            "program": "${workspaceRoot}/target/debug/nicehash_cpumulti_miner_optimiser-0e2511b8a342529a",
             "args": [
                 "--test",
-                "test_parse_cpumulti_miner_output"
+                "can_get_most_profitable"
             ],
-            "cwd": "${workspaceRoot}",
-            "initCommands": [
-                "command script import \"/Users/stefano/dev/rust/rust/src/etc/lldb_rust_formatters.py\"",
-                "type summary add --no-value --python-function lldb_rust_formatters.print_val -x \".*\" --category Rust",
-                "type category enable Rust"
-            ]
+            "cwd": "${workspaceRoot}"
+            // "initCommands": [
+            //     "command script import \"/Users/stefano/dev/rust/rust/src/etc/lldb_rust_formatters.py\"",
+            //     "type summary add --no-value --python-function lldb_rust_formatters.print_val -x \".*\" --category Rust",
+            //     "type category enable Rust"
+            // ]
         }
     ]
 }
