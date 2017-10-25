@@ -22,7 +22,7 @@ fn get_map()-> HashMap<String, Option<String>> {
 
 #[test]
 fn can_map_algorithm(){
-    let algorithm = "cryptonight";
+    let algorithm = "cryptonight".to_string();
 
-    assert_eq!(MAP.get(algorithm), Some(&Some(algorithm.to_string())));
+    assert_eq!(get_cpuminer_algorithm_name(&algorithm), Some(&Some(algorithm.to_string())));
 }

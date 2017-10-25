@@ -1,3 +1,4 @@
+/// Mock cpuminer to help debug on systems where cpuminer can't be built.
 fn main (){
     print!(r"CPU #2: 1.95 H/s
 CPU #1: 2.21 H/s
