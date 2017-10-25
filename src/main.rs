@@ -13,8 +13,8 @@ extern crate config;
 mod runner;
 mod parser;
 mod performance_calculator;
-mod query_nicehash;
-mod profitability;
+mod nicehash_api_raw;
+mod nicehash_api;
 mod benchmark;
 mod nicehash_cpuminer_mapper;
 
@@ -30,7 +30,7 @@ fn main() {
 
     let user_wallet = matches.value_of(&USER_WALLET_ARG).unwrap_or(&DEV_WALLET);
 
-    let nicehash_response = profitability::get_profitability().unwrap();
+    let nicehash_response = nicehash_api::get_profitability().unwrap();
     let algorithms= nicehash_response.result.simplemultialgo;
 
 
