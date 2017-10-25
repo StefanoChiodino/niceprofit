@@ -3,6 +3,7 @@ use parser;
 use performance_calculator;
 use runner;
 use profitability::Simplealgo;
+use nicehash_cpuminer_mapper;
 
 use std::process::Command;
 
@@ -15,10 +16,15 @@ pub fn benchmark(algorithms: Vec<Simplealgo>,
     let benchmarks: HashMap<String, Result<f64, String>> = algorithms
         .iter()
         .map(|simplemultialgo| {
+            let cpuminer_algorithm_mapped = nicehash_cpuminer_mapper::get_cpuminer_algorithm_name(&simplemultialgo.name);
+            if cpuminer_algorithm_mapped.is_none() || cpuminer_algorithm_mapped.unwrap().is_none() {
+                return (simplemultialgo.name.to_string(), Err("can't map algorithm".to_string()));
+            }
+
             let mut cpuminer_multi_command = Command::new(&cpuminer_multi_path);
             cpuminer_multi_command
                 .arg("-a".to_string())
-                .arg(simplemultialgo.name.to_string())
+                .arg(cpuminer_algorithm_mapped.unwrap().clone().unwrap().to_string())
                 .arg("-o")
                 .arg(format!("stratum+tcp://{}.{}.nicehash.com:{}", simplemultialgo.name, location, simplemultialgo.port))
                 .arg("-u")
