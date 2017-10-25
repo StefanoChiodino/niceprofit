@@ -1,14 +1,13 @@
 extern crate config;
 use config::*;
 use std::collections::HashMap;
-use std::sync::RwLock;
 
 lazy_static! {
 	static ref MAP: HashMap<String, Option<String>> = get_map();
 }
 
-pub fn get_cpuminer_algorithm_name(nicehash_algorithm_name: String) -> Option<String>{
-    None
+pub fn get_cpuminer_algorithm_name<'a>(nicehash_algorithm_name: &String) -> Option<&'a Option<String>>{
+    MAP.get(nicehash_algorithm_name)
 }
 
 fn get_map()-> HashMap<String, Option<String>> {
