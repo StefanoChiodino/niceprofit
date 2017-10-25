@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use parser;
 use performance_calculator;
 use runner;
-use profitability::Simplealgo;
+use nicehash_api::Simplealgo;
 use nicehash_cpuminer_mapper;
 
 use std::process::Command;
@@ -68,7 +68,9 @@ fn can_benchmark_algorithms(){
     let mut algorithm_benchmark = benchmarks.get_mut(algorithm_name).unwrap();
 
     match *algorithm_benchmark {
-        Err(ref e) => panic!(e.clone()),
+        Err(ref e) => {
+            assert_eq!(format!("{}", e), "");
+        }
         _=>()
     }
 }

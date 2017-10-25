@@ -37,9 +37,9 @@ pub struct Simplealgo {
 }
 
 pub fn get_profitability() -> Result<SimplemultialgoInfo, ProfitabilityError> {
-    use query_nicehash;
+    use nicehash_api_raw;
 
-    let profitability_json = query_nicehash::get_nicehash_response()?;
+    let profitability_json = nicehash_api_raw::get_nicehash_response()?;
 
     let simplemultialgoinfo: SimplemultialgoInfo = serde_json::from_str(&profitability_json)?;
 
