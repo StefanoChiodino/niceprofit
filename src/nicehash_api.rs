@@ -10,6 +10,7 @@ use self::serde::de::{self, Deserialize, Deserializer};
 use std::fmt::Display;
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub enum ProfitabilityError {
     Reqwest(reqwest::Error),
     SerdeJson(serde_json::Error),
@@ -27,7 +28,7 @@ pub struct NicehashResult {
     pub simplemultialgo: Vec<Simplealgo>,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Simplealgo {
     #[serde(deserialize_with = "from_str")]
     pub paying: f64,

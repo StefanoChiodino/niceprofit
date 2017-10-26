@@ -2,17 +2,17 @@ extern crate regex;
 use self::regex::Regex;
 use std::collections::HashMap;
 
-pub fn parse(output: String) -> HashMap<u32, Vec<f64>> {
+pub fn parse(output: &str) -> HashMap<u32, Vec<f64>> {
 
     lazy_static! {
         static ref REGEX: Regex = Regex::new(r"CPU #(\d): (.+) (.*H)/s").unwrap();
     }
 
     let mut cpu_hashrates: HashMap<u32, Vec<f64>> = HashMap::new();
-    for capture in REGEX.captures_iter(&output) {
+    for capture in REGEX.captures_iter(output) {
         let core_number = capture[1].parse().unwrap();
         let mut hashrate = capture[2].parse().unwrap();
-        print!("{:?}", capture);
+
         match &capture[3] {
             "kH" => hashrate *= 1_000_f64,
             "mH" => hashrate *= 1_000_000_f64,
@@ -21,14 +21,10 @@ pub fn parse(output: String) -> HashMap<u32, Vec<f64>> {
             "pH" => hashrate *= 1_000_000_000_000_000_f64,
             _ => (),
         }
-        if cpu_hashrates.contains_key(&core_number) {
-            cpu_hashrates
-                .get_mut(&core_number)
-                .unwrap()
-                .push(hashrate);
-        } else {
-            cpu_hashrates.insert(core_number, vec![hashrate]);
-        }
+
+        cpu_hashrates
+            .entry(core_number)
+            .or_insert_with(|| vec![hashrate] );
     }
 
     cpu_hashrates

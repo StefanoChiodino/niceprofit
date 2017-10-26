@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn calculate_hashrate(interpretation: HashMap<u32, Vec<f64>>) -> f64 {
+pub fn calculate_hashrate(interpretation: &HashMap<u32, Vec<f64>>) -> f64 {
     let hashrate: f64 = interpretation
         .iter()
         .map(|(_, v)| v.iter().sum::<f64>() / v.len() as f64)
