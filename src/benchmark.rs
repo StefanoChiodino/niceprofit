@@ -4,10 +4,9 @@ use performance_calculator;
 use runner;
 use nicehash_api::Simplealgo;
 use nicehash_cpuminer_mapper;
-
 use std::process::Command;
 
-pub fn benchmark(algorithms: Vec<Simplealgo>,
+pub fn benchmark(algorithms: &[Simplealgo],
                  location: &str,
                  benchmark_time_ms: u64,
                  cpuminer_multi_path: &str,
@@ -37,8 +36,8 @@ pub fn benchmark(algorithms: Vec<Simplealgo>,
             let output = runner::run(cpuminer_multi_command, benchmark_time_ms);
             match output {
                 Ok(Some(o)) => {
-                    let parsed_output = parser::parse(o);
-                    let hashrate = performance_calculator::calculate_hashrate(parsed_output);
+                    let parsed_output = parser::parse(&o);
+                    let hashrate = performance_calculator::calculate_hashrate(&parsed_output);
                     (simplemultialgo.name.to_string(), Ok(hashrate))
                 },
                 Ok(None) => (simplemultialgo.name.to_string(), Err("no output!".to_string())),
@@ -63,9 +62,9 @@ fn can_benchmark_algorithms(){
         vec![algorithm],
         &::LOCATION,
         ::BENCHMARK_TIME_MS,
-        &::CPUMINER_MULTI_PATH,
+        &configuration_provider::get_configuration().cpuminer_multi_path,
         &::DEV_WALLET);
-    let mut algorithm_benchmark = benchmarks.get_mut(algorithm_name).unwrap();
+    let algorithm_benchmark = benchmarks.get_mut(algorithm_name).unwrap();
 
     match *algorithm_benchmark {
         Err(ref e) => {

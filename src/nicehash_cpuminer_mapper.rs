@@ -6,7 +6,7 @@ lazy_static! {
 	static ref MAP: HashMap<String, Option<String>> = get_map();
 }
 
-pub fn get_cpuminer_algorithm_name<'a>(nicehash_algorithm_name: &String) -> Option<&'a Option<String>>{
+pub fn get_cpuminer_algorithm_name<'a>(nicehash_algorithm_name: &str) -> Option<&'a Option<String>>{
     MAP.get(nicehash_algorithm_name)
 }
 
