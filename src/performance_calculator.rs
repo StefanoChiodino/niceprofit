@@ -16,7 +16,7 @@ fn test_hashrate_calcualation() {
         .cloned()
         .collect();
 
-    let hashrate = calculate_hashrate(interpretation);
+    let hashrate = calculate_hashrate(&interpretation);
 
-    assert_eq!(hashrate, 4 as f64);
+    assert_eq!(hashrate, 4_f64);
 }
