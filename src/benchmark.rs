@@ -5,6 +5,7 @@ use runner;
 use nicehash_api::Simplealgo;
 use nicehash_cpuminer_mapper;
 use std::process::Command;
+use configuration_provider;
 
 pub fn benchmark(algorithms: &[Simplealgo],
                  location: &str,
@@ -59,7 +60,7 @@ fn can_benchmark_algorithms(){
         paying: 0_f64,
     };
     let mut benchmarks = benchmark(
-        vec![algorithm],
+        &vec![algorithm],
         &::LOCATION,
         ::BENCHMARK_TIME_MS,
         &configuration_provider::get_configuration().cpuminer_multi_path,

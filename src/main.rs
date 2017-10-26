@@ -30,12 +30,11 @@ const BENCHMARK_TIME_MS: u64 = 100_000;
 const LOCATION: &str = "eu";
 
 fn main() {
-
     let nicehash_response = nicehash_api::get_profitability().unwrap();
     let algorithms= nicehash_response.result.simplemultialgo;
     let benchmark = benchmark::benchmark(&algorithms, LOCATION, BENCHMARK_TIME_MS, &configuration_provider::get_configuration().cpuminer_multi_path, DEV_WALLET);
 
     let best_algorithm = algorithm_picker::pick_cpuminer_algorithm(&algorithms, &benchmark);
 
-    println!("{:#?}", best_algorithm);
+    println!("The most profitable algorithm to run at the moment is {:#?}", best_algorithm);
 }

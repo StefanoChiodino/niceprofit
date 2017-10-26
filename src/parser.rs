@@ -43,7 +43,7 @@ CPU #2: 1.50 H/s
 CPU #1: 1.80 H/s"
             .to_string();
 
-    let interpretation = parse(output);
+    let interpretation = parse(&output);
 
     assert_eq!(interpretation.len(), 4);
     assert_eq!(interpretation[&(0 as u32)].len(), 1);
@@ -56,7 +56,7 @@ fn test_parsing_khash() {
     let output = "CPU #0: 0.25 kH/s"
             .to_string();
 
-    let interpretation = parse(output);
+    let interpretation = parse(&output);
 
     assert_eq!(interpretation[&(0 as u32)][0], 250_f64);
 }
@@ -72,7 +72,7 @@ CPU #4: 1 tH/s
 CPU #5: 1 pH/s"
             .to_string();
 
-    let interpretation = parse(output);
+    let interpretation = parse(&output);
 
     assert_eq!(interpretation[&(0 as u32)][0], 1_f64);
     assert_eq!(interpretation[&(1 as u32)][0], 1_000_f64);

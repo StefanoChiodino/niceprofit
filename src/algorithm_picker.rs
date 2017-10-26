@@ -67,7 +67,7 @@ fn can_get_most_profitable() {
         .cloned()
         .collect();
 
-    let algorithm = pick_cpuminer_algorithm(simplealgos, benchmarks);
+    let algorithm = pick_cpuminer_algorithm(&simplealgos, &benchmarks);
 
     assert_eq!(algorithm, "d")
 }
