@@ -1,7 +1,6 @@
 use clap::App;
 
 const CPUMINER_MULTI_PATH_ARG: &str = "cpuminer-path";
-const CPUMINER_MULTI_PATH_DEFAULT: &str = "cpuminer";
 
 pub struct Configuration {
     pub cpuminer_multi_path: String,
@@ -20,7 +19,7 @@ fn init_configuration() -> Configuration {
     let matches = App::from_yaml(clap_yaml).get_matches();
 
     //    let user_wallet = matches.value_of(&USER_WALLET_ARG).unwrap_or(&DEV_WALLET);
-    let cpuminer_multi_path = matches.value_of(&CPUMINER_MULTI_PATH_ARG).unwrap_or(CPUMINER_MULTI_PATH_DEFAULT);
+    let cpuminer_multi_path = matches.value_of(&CPUMINER_MULTI_PATH_ARG).unwrap();
 
     Configuration{cpuminer_multi_path : cpuminer_multi_path.to_string()}
 }
