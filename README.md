@@ -7,4 +7,4 @@ Nicehash Windows Gui is very good and it takes care of everything. It benchmarks
 
 On linux there is not such nice option.
 
-Niceprofit is meant to be used with [https://github.com/tpruvot/cpuminer-multi]( tpruvot's cpuminer) to find your CPU hashrate for all algorithms and then select the most profitable with the up to date data from Nicehash API.
+Niceprofit is meant to be used with [tpruvot's cpuminer](https://github.com/tpruvot/cpuminer-multi) to find your CPU hashrate for all algorithms and then select the most profitable with the up to date data from Nicehash API.
