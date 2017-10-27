@@ -25,7 +25,7 @@ fn can_run_ping() {
     let mut command = Command::new(path);
     command.arg(argument);
 
-    let run = run(command, 1000);
+    let run = run(command, 100);
 
     assert!(run.is_ok());
 }

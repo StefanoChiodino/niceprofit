@@ -24,7 +24,8 @@ pub fn parse(output: &str) -> HashMap<u32, Vec<f64>> {
 
         cpu_hashrates
             .entry(core_number)
-            .or_insert_with(|| vec![hashrate] );
+            .or_insert(vec![] )
+            .push(hashrate);
     }
 
     cpu_hashrates

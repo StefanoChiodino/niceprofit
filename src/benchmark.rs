@@ -62,7 +62,7 @@ fn can_benchmark_algorithms(){
     let mut benchmarks = benchmark(
         &vec![algorithm],
         &::LOCATION,
-        ::BENCHMARK_TIME_MS,
+        100,
         &configuration_provider::get_configuration().cpuminer_multi_path,
         &::DEV_WALLET);
     let algorithm_benchmark = benchmarks.get_mut(algorithm_name).unwrap();
