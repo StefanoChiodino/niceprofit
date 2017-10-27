@@ -8,7 +8,7 @@
 curl https://sh.rustup.rs -sSf | sh
 git clone git@github.com:StefanoChiodino/niceprofit.git
 cd niceprofit
-Use `cargo run --bin niceprofit -- -p INSER_PATH_TO_CPUMINER_HERE
+cargo run --bin niceprofit -- -p INSER_PATH_TO_CPUMINER_HERE
 ```
 
 ## Intro
