@@ -14,25 +14,25 @@ matrix:
   include:
     # Linux
     - env: TARGET=i686-unknown-linux-gnu
-    #- env: TARGET=i686-unknown-linux-musl
-    #- env: TARGET=x86_64-unknown-linux-gnu
-    #- env: TARGET=x86_64-unknown-linux-musl
+    - env: TARGET=i686-unknown-linux-musl
+    - env: TARGET=x86_64-unknown-linux-gnu
+    - env: TARGET=x86_64-unknown-linux-musl
 
     # OSX
-    - env: TARGET=i686-apple-darwin
+    #- env: TARGET=i686-apple-darwin
       os: osx
-    #- env: TARGET=x86_64-apple-darwin
+    - env: TARGET=x86_64-apple-darwin
       #os: osx
 
     # *BSD
-    - env: TARGET=i686-unknown-freebsd DISABLE_TESTS=1
-    #- env: TARGET=x86_64-unknown-freebsd DISABLE_TESTS=1
+    #- env: TARGET=i686-unknown-freebsd DISABLE_TESTS=1
+    - env: TARGET=x86_64-unknown-freebsd DISABLE_TESTS=1
     #- env: TARGET=x86_64-unknown-netbsd DISABLE_TESTS=1
 
     # Other architectures
-    #- env: TARGET=aarch64-unknown-linux-gnu
+    - env: TARGET=aarch64-unknown-linux-gnu
     - env: TARGET=armv7-unknown-linux-gnueabihf
-    #- env: TARGET=mips-unknown-linux-gnu
+    - env: TARGET=mips-unknown-linux-gnu
     #- env: TARGET=mips64-unknown-linux-gnuabi64
     #- env: TARGET=mips64el-unknown-linux-gnuabi64
     #- env: TARGET=mipsel-unknown-linux-gnu
@@ -42,11 +42,11 @@ matrix:
     #- env: TARGET=s390x-unknown-linux-gnu DISABLE_TESTS=1
 
     # Testing other channels
-    #- env: TARGET=x86_64-unknown-linux-gnu
-    #  rust: nightly
-    #- env: TARGET=x86_64-apple-darwin
-    #  os: osx
-    #  rust: nightly
+    - env: TARGET=x86_64-unknown-linux-gnu
+      rust: nightly
+    - env: TARGET=x86_64-apple-darwin
+      os: osx
+      rust: nightly
 
 before_install: set -e
 
@@ -64,7 +64,7 @@ before_deploy:
 
 deploy:
   api_key:
-    secure: hPZcrkdnIbZthrIC9EyUCE8yT9/zYjSneP+HxeKZX4vdnJYChkajMm7nImVDuGwK9B5X9yaxYt8fIzrLdO7reEoDPiVrmKNy5F2mfkfR2mp/U7T92K7oUkUkXYGg6JK/9EbA9ArgcMBTvQo7TuxGJ8OMFHkI79j7QkcKnSWynnMm4partBnr2WBvy7iz6zSG/7tKhKAekX7oBmVl0P+Nhbwt+NEGsp/OZ9IjCIf+7uvP9yzi7cDNUqK9ijvwBCQpwcSKIoZizEMNji+YUwSRinPv+tZ2xEWWm506cVa3+aFx4+NJnJWNDbHp5fy7SljyAhRaI/49nzvX2Jf02v908clwOAwFkC69NICD+3oqxPm+BXHw87kB0+rTtxkKdsGiiKCzU+W4vCFlTUNLLMBknLuiwDdBVZjc1q/lym+dUaLNZNOjxnnsEdRxuO73TlwZRLRq7GRGNrpLpi9nmbaPM41b12/75LNeLaCVUEccNTfHzIn75FDZ+rEobv9cH9I/ZIBhclKljCa2sIMAU/GtYKxL0EKU3oxtN5BvowbatERlfWWdrD3D7VNo7Is7myKuaMo5+RClcmYkuGu/MIFASJhuAVVTSuSHfp72ZznWDLx+xpW7UV66fT1Nh1mdPymsOlgKWma/+NhKjBI3p58te9H+XDY+nAox0FB96LChXfU=
+    secure: PhrN1csx4rrQzPN686tCWjxHDZ1Aj1rqcOlBjMVt2Ef3HlxtpB+clMiC9mlyLScX2PhMqokOARqM6CZ3JIaDNgGdUKcR88YqeJ4ReyBYxSVsuUq9TYY9H9a/qMygK3D9kus4EzIg2vEMw9j2ruTvekqibeTPtZyTtBCpvS1Bklag98rJPbxTIbzpu98lTy9aMvE2K6QIBt6iP9lZ/OFA0aHzX49j6e4iCELRuQRGpbtvOOFND52zQUnsCzi/Agb75J4OS3kWsplM7WQ9/1mm+q9bOe1ofUX/5MHlAY0b3r1kpWc3DxufyVz309w+dgsbU0k+BpzjWSPp+ZHydRjPWQak+yYULiZYRQWZ100H/X1/ZpXDw+tmFnC1z1qL9XbzsIMYU0YsOdxGgjK5/OcjafswoTEEJDl9YsXW9YeYR4YT6909V0Bwi0PDlaTxuHpVgnqgRtML6Jtj7uNff/yv0THB2Q59uXOBvtGEBzNur8GDXc55Em0OotZGPAlPmUsiUO317/9AjzjnhSdQe+XOZkCW3xZsrG3izZWjWgEMG/V2XlO+30lwXZc4SEyoHp280AumRGiphxzJqhCoWNsfiEwa71iMUA03Dc/k1IwexHyhOnXfDkjpc7s/eCGv600xD9/FfvRJm0+ZAy5rfj2CVZ6G5O+aUIyTMCH8uYLlab0=
   file_glob: true
   file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
   on:
