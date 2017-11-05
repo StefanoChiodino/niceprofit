@@ -16,3 +16,7 @@ clippy = {version = "*", optional = true}
 
 [features]
 default = []
+
+[dependencies.libinspire]
+git = "https://github.com/musoke/libinspire"
+branch = "no-https"
