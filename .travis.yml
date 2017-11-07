@@ -66,7 +66,9 @@ deploy:
   api_key:
     secure: PhrN1csx4rrQzPN686tCWjxHDZ1Aj1rqcOlBjMVt2Ef3HlxtpB+clMiC9mlyLScX2PhMqokOARqM6CZ3JIaDNgGdUKcR88YqeJ4ReyBYxSVsuUq9TYY9H9a/qMygK3D9kus4EzIg2vEMw9j2ruTvekqibeTPtZyTtBCpvS1Bklag98rJPbxTIbzpu98lTy9aMvE2K6QIBt6iP9lZ/OFA0aHzX49j6e4iCELRuQRGpbtvOOFND52zQUnsCzi/Agb75J4OS3kWsplM7WQ9/1mm+q9bOe1ofUX/5MHlAY0b3r1kpWc3DxufyVz309w+dgsbU0k+BpzjWSPp+ZHydRjPWQak+yYULiZYRQWZ100H/X1/ZpXDw+tmFnC1z1qL9XbzsIMYU0YsOdxGgjK5/OcjafswoTEEJDl9YsXW9YeYR4YT6909V0Bwi0PDlaTxuHpVgnqgRtML6Jtj7uNff/yv0THB2Q59uXOBvtGEBzNur8GDXc55Em0OotZGPAlPmUsiUO317/9AjzjnhSdQe+XOZkCW3xZsrG3izZWjWgEMG/V2XlO+30lwXZc4SEyoHp280AumRGiphxzJqhCoWNsfiEwa71iMUA03Dc/k1IwexHyhOnXfDkjpc7s/eCGv600xD9/FfvRJm0+ZAy5rfj2CVZ6G5O+aUIyTMCH8uYLlab0=
   file_glob: true
-  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
+  file:
+    - $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
+    - nicehash_cpuminer_map.json
   on:
     condition: $TRAVIS_RUST_VERSION = stable
     tags: true
