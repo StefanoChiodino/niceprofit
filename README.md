@@ -4,6 +4,16 @@
 ![Appveyor Build status](https://ci.appveyor.com/api/projects/status/bt5b5t25x4wi8ttk/branch/master?svg=true)
 
 ## TL;DR
+
+Download latest for your OS [In the release page](https://github.com/StefanoChiodino/niceprofit/releases).
+
+Extract (`tar -xf`)
+
+Run `niceprofit -p INSER_PATH_TO_CPUMINER_HERE`
+
+### OR
+Install Rust, clone, compile and run.
+
 ```
 curl https://sh.rustup.rs -sSf | sh
 git clone git@github.com:StefanoChiodino/niceprofit.git
